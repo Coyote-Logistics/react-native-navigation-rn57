@@ -44,15 +44,16 @@
 	if (self.badge) {
 		NSString *badge = nil;
 		if (self.badge != nil && ![self.badge isEqual:[NSNull null]]) {
-			badge = [RCTConvert NSString:self.badge];
+			badge = @"●";
 		}
 		UITabBarItem *tabBarItem = viewController.tabBarItem;
 		if (viewController.navigationController) {
 			tabBarItem = viewController.navigationController.tabBarItem;
 		}
 		tabBarItem.badgeValue = badge;
+		[tabBarItem setBadgeColor:[UIColor clearColor]];
 		if (self.badgeColor) {
-			tabBarItem.badgeColor = [RCTConvert UIColor:self.badgeColor];
+			[tabBarItem setBadgeTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor greenColor], NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
 		}
 		
 		if ([self.badge isEqual:[NSNull null]] || [self.badge isEqualToString:@""]) {
